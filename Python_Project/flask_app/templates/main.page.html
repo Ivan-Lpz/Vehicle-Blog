@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
+    <script src="/static/homepage.js"></script>
+</head>
+
+<body class="body">
+    <nav id="nav-bar" class="navbar navbar-expand-lg py-4">
+        <h1 class="nav-header">Car Reviews</h1>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li id="home-link" class="nav-item">
+                    <a class="nav-link active" href="#">Home</a>
+                </li>
+                {% if "logged_id" in session %}
+                <li class="nav-item">
+                    <a class="nav-link active" href="/create">Create</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/user/posts">My posts</a>
+                </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search Cars" aria-label="Search">
+                <button id="search-button" class="btn btn-outline-primary" type="button">Search</button></a>
+                {% if "logged_id" not in session %}
+                <a href="/"><button id="logout-button" class="btn btn-outline-primary" type="button">Login</button></a>
+                {% endif %}
+                {% if "logged_id" in session %}
+                <a href="/logout"><button id="logout-button" class="btn btn-outline-primary"
+                        type="button">Logout</button></a>
+                {% endif %}
+
+            </form>
+        </div>
+    </nav>
+    <div class="main-header-img">
+        <img class="main-header-image" src="https://as2.ftcdn.net/v2/jpg/02/81/69/29/1000_F_281692999_adE8g6oxgLPEr9tWognqZkuXyFqdnrID.jpg" alt="bmw-m4">
+    </div>
+    <h2 class="text-center mb-4 text-light">View all</h2>
+    <div class="main-content">
+        <div class="row-content">
+            <div class="user-image-uploads">
+                <img class="less-than-greater-than" src="/static/images/less-than.png" alt="left-arrow" id="left-arrow"
+                    onclick="leftArrowClick()">
+                <img class="m4-image" src="https://www.rwcarbon.com/prod_images/large/bmwf8x015.jpg" alt="bmw-m4" id="banner">
+                <img class="less-than-greater-than" src="/static/images/greater-than.png" alt="right-arrow"
+                    id="right-arrow" onclick="rightArrowClick()">
+            </div>
+
+            <div class="user-description">
+                <div class="text-center">
+                    <h2 class="mt-3">Fun Weekend Car</h2>
+                    <p class="mt-4">Here is my 2017 BMW m4. So far I've had a great experience with it, and it is a very
+                        fun car. I use
+                        it as a weekend car and love to take it around the canyons and curves. One complaint I would say
+                        is
+                        the interior. For the price I paid I feel it could have been better</p>
+
+                    <h4>Posted By Aman</h4>
+                </div>
+            </div>
+        </div>
+        <div class="main-participate">
+            <div class="participate-row">
+                <a href="#">Leave a Review</a>
+                <a href="/reviews">View all Reviews</a>
+            </div>
+            <div class="buttons-row">
+                <div class="like-button-div">
+                    <button onclick='botLikesUpdate("botLikes")' class= "btn btn-primary">Like</button>
+                    <p class="likes"><span id="botLikes">3</span> Like(s)</p>
+                </div>
+                <div class="dislike-button-div">
+                    <button onclick='botLikesUpdate("botLikes")' class="btn btn-danger">Dis-Like</button>
+                    <p class="likes"><span id="botLikes">0</span> Dislike(s)</p>
+                </div>
+            </div>
+        </div>
+        <div class="row-content">
+            <div class="user-image-uploads">
+
+                <img class="less-than-greater-than" src="/static/images/less-than.png" alt="left-arrow" id="left-arrow"
+                    onclick="leftArrowMidClick()">
+                <img class="m4-image" src="https://media.evo.co.uk/image/private/s--knnanL-3--/f_auto,t_content-image-full-desktop@1/v1606835040/evo/2020/12/Tesla%20Model%203%20review%202020%20Dec-10.jpg" alt="bmw-m4" id="Midbanner">
+                <img class="less-than-greater-than" src="/static/images/greater-than.png" alt="right-arrow"
+                    id="right-arrow" onclick="rightArrowMidClick()">
+
+            </div>
+            <div class="user-description">
+                <div class="form-group text-center">
+                    <h2 class="mt-3">Worst Car Ever</h2>
+                    <p class="mt-4">This is my 2018 Tesla Model 3. The only good thing about this car is that I don't
+                        need to pay for
+                        gas. Other than that this car sucks. Its falling apart and water leaks through certain body
+                        panel.
+                        For the price of this car you would think the quality would better!</p>
+                    <h4>Posted by John</h4>
+                </div>
+            </div>
+        </div>
+        <div class="main-participate">
+            <div class="participate-row">
+                <a href="#">Leave a review</a>
+                <a href="/reviews">View all Reviews</a>
+            </div>
+            <div class="buttons-row">
+                <div class="like-button-div"><button onclick='botLikesUpdate("botLikes")'
+                        class="btn btn-primary">Like</button>
+                    <p class="likes"><span id="botLikes">1</span> Like(s)</p>
+                </div>
+                <div class="dislike-button-div"><button onclick='botLikesUpdate("botLikes")'
+                        class="btn btn-danger">Dis-Like</button>
+                    <p class="likes"><span id="botLikes">9</span> Dislike(s)</p>
+                </div>
+            </div>
+        </div>
+        <div class="row-content">
+            <div class="user-image-uploads">
+                <img class="less-than-greater-than" src="/static/images/less-than.png" alt="left-arrow"
+                    id="bot-left-arrow" onclick="botleftArrowClick()">
+                <img class="m4-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/2000_Toyota_Camry_%28MCV20R%29_CSi_sedan_%28rear%29.jpg/800px-2000_Toyota_Camry_%28MCV20R%29_CSi_sedan_%28rear%29.jpg?20201018043842" alt="bmw-m4" id="botbanner">
+                <img class="less-than-greater-than" src="/static/images/greater-than.png" alt="right-arrow"
+                    id="bot-right-arrow" onclick="botrightArrowClick()">
+            </div>
+
+            <div class="user-description">
+                <div class="form-group text-center">
+                    <h2 class="mt-3">Most Reliable Car In Existance</h2>
+                    <p class="mt-4">Feast your eyes on this 2000 Toyota Camry. This car saves gas and is very reliable.
+                        So far no
+                        complaints.
+                        Perfect daily driver.</p>
+                    <h4>Posted by Ivan</h4>
+                </div>
+            </div>
+        </div>
+        <div class="main-participate">
+            <div class="participate-row">
+                <a href="#">Leave a review</a>
+                <a href="/reviews">View all Reviews</a>
+            </div>
+            <div class="buttons-row">
+                <div class="like-button-div">
+                    <button onclick='botLikesUpdate("botLikes")'
+                        class="btn btn-primary">Like</button>
+                    <p class="likes"><span id="botLikes">11</span> Like(s)</p>
+                </div>
+                <div class="dislike-button-div"><button onclick='botLikesUpdate("botLikes")'
+                        class="btn btn-danger">Dis-Like</button>
+                    <p class="likes"><span id="botLikes">0</span> Dislike(s)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
